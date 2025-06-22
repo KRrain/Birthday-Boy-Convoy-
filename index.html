@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VTC Slot Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header">
+    <img src="https://i.imgur.com/lFpsXWO.png" alt="Header">
+  </div>
+
+  <!-- POPUP SUCCESS -->
+  <div id="bookingSuccessPopup" style="display:none;">
+    <div id="popupContent">
+      <div id="emailPrompt" style="display:none; margin-top:15px;">
+        <input type="email" id="userEmailInput" placeholder="Enter your email" />
+        <br>
+        <button onclick="sendEmailToUser()">📨 Send Email</button>
+      </div>
+      <h2>🎉 Booking Confirmed!</h2>
+      <div id="popupGrid" class="popup-grid"></div>
+      <div class="popup-options">
+        <p><strong>📨 Would you like your file sent to you?</strong></p>
+        <button onclick="handleFileOption('email')">📧 Send by Email</button>
+        <button onclick="handleFileOption('download')">⬇️ Download File</button>
+      </div>
+      <a href="https://discord.com/channels/727506096943792149/1386353782337830963" class="discord-link">
+        🔗 Open Discord View Storages Slot Channel
+      </a>
+      <button onclick="closePopup()" class="close-btn">❌ Close</button>
+    </div>
+  </div>
+
+  <!-- BOOKING FORM -->
+  <div class="form-container">
+    <div class="popup-title-animated">BIRTHDAY DAY BOY</div>
+    <input type="text" id="vtcName" placeholder="VTC Name" />
+    <input type="text" id="vtcRole" placeholder="VTC Role" />
+    <input type="url" id="vtcLink" placeholder="VTC Link" />
+    <input type="text" id="discordId" placeholder="Discord ID" />
+    <div class="slots" id="slotContainer"></div>
+    <div id="publicImageDisplay"></div>
+  </div>
+
+  <!-- ADMIN LOGIN SECTION -->
+  <div id="adminLoginSection" style="display: none;">
+    <input type="password" id="adminPassInput" placeholder="Enter Admin Password" />
+    <div class="button-grid">
+      <button class="admin-btn-sub" onclick="adminLogin()">Submit</button>
+      <button class="admin-btn-clos" onclick="closeAdminLogin()">Close ✖️</button>
+    </div>
+  </div>
+
+  <!-- PUBLIC BUTTONS -->
+  <div class="button-grid" id="publicButtons">
+    <button class="submit-btn" onclick="submitBooking()">Submit Booking</button>
+    <button class="reset-btn" onclick="toggleViewPanel()">📋 View All Bookings</button>
+    <button class="clear-btn" id="clearForm">🧹 Clear Selection</button>
+    <button class="reset-btn" onclick="toggleAdminLogin()">🔐 Admin Login</button>
+  </div>
+
+  <!-- BOOKINGS PANEL -->
+  <div id="bookingPanel">
+    <h2>All Bookings</h2>
+    <div id="bookingList"></div>
+  </div>
+
+  <!-- ALERT BOX -->
+  <div class="alert" id="alertBox"></div>
+
+  <!-- ADMIN CONTROLS -->
+  <div id="adminControls" style="display:none;">
+    <div id="adminImageUpload" class="upload-from-link">
+      <h3>📎 Upload Public Image (Link)</h3>
+      <input type="text" id="imageUrlInput" placeholder="Paste image URL (https://...)" />
+      <button onclick="submitImageLink()">📤 Submit Image Link</button>
+      <div id="imagePreviewContainer"></div>
+    </div>
+    <div class="button-grid">
+      <button class="reset-btn" onclick="resetAllSlots()">♻️ Reset All Slots</button>
+      <button class="reset-btn" onclick="deleteSelectedSlot()">🗑️ Delete Selected Slot</button>
+      <button class="reset-btn" onclick="deleteLastSlot()">🗑️ Delete Last Slot</button>
+      <button class="logout-btn" onclick="adminLogout()">🚪 Logout</button>
+    </div>
+    <input type="text" id="renameSlotInput" placeholder="Enter new slot name" />
+    <button class="reset-btn" onclick="renameSelectedSlot()">✏️ Rename Selected Slot</button>
+    <hr>
+    <input type="text" id="customSlotName" placeholder="Enter Slot Name (optional)" />
+    <button class="reset-btn" onclick="addSlot()">➕ Add Custom Slot</button>
+    <hr>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy;<span id="year"></span> Nexus Transport × Virtual Company. All rights reserved.
+  </footer>
+
+  <script>
+    emailjs.init("YKQ-XA7D55lvUMzvF");
+  </script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

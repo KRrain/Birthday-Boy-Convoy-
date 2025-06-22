@@ -1,0 +1,313 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('https://i.imgur.com/zhGmasr.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+.header img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.form-container {
+  background: rgba(0, 0, 0, 0.5);
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.popup-title-animated {
+  font-family: Times New Roman;
+  font-size: 23px;
+  font-weight: bold;
+  border: 2px solid red;
+  border-radius: 10px;
+  background: linear-gradient(90deg, red, yellow, lime, cyan, blue, magenta, red);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowText 8s linear infinite;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes rainbowText {
+  0% { background-position: 0% }
+  100% { background-position: 400% }
+}
+
+input, button {
+  display: block;
+  width: 95%;
+  margin: 15px auto;
+  padding: 13px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+input {
+  background: #222;
+  color: white;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.slot-btn {
+  background: black;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.slot-btn.selected {
+  background: green;
+}
+
+.slot-btn.booked {
+  background: red;
+  cursor: not-allowed;
+}
+
+.submit-btn, .reset-btn, .history-btn, .clear-btn {
+  background: #ff4444;
+  padding: 9px 1px;
+  border: 1px solid black;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+  border-radius: 10000px;
+  transition: transform 0.2s ease, background 0.3s;
+  width: auto;
+  height: auto;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+.logout-btn {
+  background: black;
+  padding: 10px 30px;
+  font-size: 12px;
+  border: 1px solid red;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+  border-radius: 10000px;
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+.admin-btn, .admin-btn-sub, .admin-btn-clos {
+  background: #ff4444;
+  padding: 10px 30px;
+  font-size: 12px;
+  border: 1px solid black;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+  border-radius: 10000px;
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+.admin-btn-sub {
+  border-color: blue;
+}
+
+.admin-btn-clos {
+  border-color: red;
+  color: red;
+  background: black;
+}
+
+.admin-btn:hover {
+  background: #f44336;
+  transform: scale(1.05);
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.clear-btn:hover {
+  background-color: #400;
+  transform: scale(1.05);
+}
+
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(50, 50, 50, 0.6);
+  border: 2px solid red;
+  padding: 20px 30px;
+  border-radius: 15px;
+  color: white;
+  font-size: 18px;
+  display: none;
+  z-index: 9999;
+}
+
+#bookingPanel {
+  display: none;
+  background: rgba(0, 0, 0, 0.7);
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+#bookingList {
+  text-align: left;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.button-grid input,
+.button-grid button {
+  flex: 0 0 calc(50% - 20px);
+  box-sizing: border-box;
+}
+
+#bookingSuccessPopup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://editablegifs.com/gif/thank-you-gif/thank-you-2.gif') 
+  center center no-repeat;
+  background-size: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#popupContent {
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  animation: fadeIn 0.5s ease;
+  box-shadow: 0 0 20px red;
+}
+
+.popup-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.popup-grid div {
+  padding: 5px;
+}
+
+.popup-options button,
+.close-btn {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background: #ff4444;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.popup-options button:hover,
+.close-btn:hover {
+  background: #ff0000;
+  transform: scale(1.05);
+}
+
+.discord-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #00bfff;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.upload-from-link input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.upload-from-link button {
+  background: #ff4444;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.uploaded-image {
+  margin-top: 15px;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid white;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: white;
+  opacity: 0.6;
+}
